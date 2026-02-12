@@ -1,7 +1,7 @@
 <h2>Waiting for Quiz to Start...</h2>
 
 <div id="countdown"></div>
-<form method='post' action="{% url 'logout' %} style="text-align:right;">
+<form method="post" action="{% url 'logout' %} style="text-align:right;">
     {% csrf_token %}
     <button type="submit" style="padding:8px 15px; background:red; color:white; border:none; border-radius:5px;">Logout</button>
 </form>
