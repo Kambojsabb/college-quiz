@@ -1,0 +1,45 @@
+<h2>{{ question.question_text }}</h2>
+
+<div id="timer">30</div>
+
+<form id="quizForm">
+    {% csrf_token %}
+    <button name="option" value="A">{{ question.option_a }}</button>
+    <button name="option" value="B">{{ question.option_b }}</button>
+    <button name="option" value="C">{{ question.option_c }}</button>
+    <button name="option" value="D">{{ question.option_d }}</button>
+</form>
+
+<script>
+let timeLeft = 30;
+let timer = setInterval(function(){
+    timeLeft--;
+    document.getElementById("timer").innerText = timeLeft;
+    if(timeLeft <= 0){
+        submitAnswer(null);
+    }
+},1000);
+
+document.querySelectorAll("button").forEach(btn=>{
+    btn.onclick = function(e){
+        e.preventDefault();
+        submitAnswer(this.value);
+    }
+});
+
+function submitAnswer(option){
+    fetch("/submit/", {
+        method:"POST",
+        headers:{
+            "X-CSRFToken": "{{ csrf_token }}",
+            "Content-Type":"application/x-www-form-urlencoded"
+        },
+        body:"option="+option
+    }).then(res=>location.reload());
+}
+
+window.onbeforeunload = function() {
+    return "Refreshing is not allowed!";
+};
+
+</script>

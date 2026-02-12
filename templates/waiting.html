@@ -1,0 +1,14 @@
+<h2>Waiting for Quiz to Start...</h2>
+
+<div id="countdown"></div>
+
+<script>
+setInterval(function(){
+    fetch("/waiting/")
+    .then(response => {
+        if(response.redirected){
+            window.location.href = response.url;
+        }
+    });
+}, 3000);
+</script>

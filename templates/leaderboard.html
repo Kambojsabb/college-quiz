@@ -1,0 +1,8 @@
+<h2>Leaderboard</h2>
+<ol>
+{% for user in users %}
+<li>
+    {{ user.username }} - {{ user.score }}
+</li>
+{% endfor %}
+</ol>
