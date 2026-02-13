@@ -1,10 +1,12 @@
 <h2>Waiting for Quiz to Start...</h2>
 
 <div id="countdown"></div>
-<form method="post" action="{% url 'logout' %} style="text-align:right;">
-    {% csrf_token %}
-    <button type="submit" style="padding:8px 15px; background:red; color:white; border:none; border-radius:5px;">Logout</button>
-</form>
+<div style="display:flex; justify-content:flex-end; margin-bottom:15px;">
+    <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button class="logout-btn">Logout</button>
+    </form>
+</div>
 
 <script>
 setInterval(function(){
